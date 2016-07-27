@@ -1,7 +1,7 @@
-# yii2-slider-module
+# yii2-multylang
 ***about***
 
-multy lingual functionality 
+multy lingual functionality for content \ whole application
 - url routing
 - unlimited languages
 - frontend widget
@@ -22,9 +22,11 @@ add into composer.json
  ~~~
 
  ***recomended***
+ 
  - http://github.com/ut8ia/yii2-adminmenu
  - http://github.com/ut8ia/yii2-content-module
  - http://github.com/ut8ia/yii2-sliders-module
+ 
  ~~~
 
  ~~~
