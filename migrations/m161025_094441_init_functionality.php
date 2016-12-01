@@ -14,7 +14,7 @@ class m161025_094441_init_functionality extends Migration
 
 
         $this->createTable('multylang_lang', [
-            'id' => $this->integer(11)->notNull()->primaryKey(),
+            'id' => $this->integer(11)->notNull(),
             'url' => $this->string(255)->notNull(),
             'local' => $this->string(255)->notNull(),
             'name' => $this->string(255)->notNull(),
@@ -22,6 +22,9 @@ class m161025_094441_init_functionality extends Migration
             'date_update' => $this->integer(11)->notNull(),
             'date_create' => $this->integer(11)->notNull(),
         ], $tableOptions);
+
+        $this->addPrimaryKey('multylang_lang_pk', 'multylang_lang', 'id');
+        $this->alterColumn('multylang_lang', 'id', $this->integer(11) . ' NOT NULL AUTO_INCREMENT');
 
         $this->insert('multylang_lang', [
             'id' => 1,
