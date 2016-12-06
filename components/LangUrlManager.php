@@ -7,13 +7,19 @@ use ut8ia\multylang\models\Lang;
 
 class LangUrlManager extends UrlManager
 {
+    public $addLangPrefix = true;
+
     public function createUrl($params)
     {
-        if( isset($params['lang_id']) ){
+        if (!$this->addLangPrefix) {
+            return parent::createUrl($params);
+        }
+
+        if (isset($params['lang_id'])) {
             //Если указан идентификатор языка, то делаем попытку найти язык в БД,
             //иначе работаем с языком по умолчанию
             $lang = Lang::findOne($params['lang_id']);
-            if( $lang === null ){
+            if ($lang === null) {
                 $lang = Lang::getDefaultLang();
             }
             unset($params['lang_id']);
@@ -21,15 +27,15 @@ class LangUrlManager extends UrlManager
             //Если не указан параметр языка, то работаем с текущим языком
             $lang = Lang::getCurrent();
         }
-        
+
         //Получаем сформированный URL(без префикса идентификатора языка)
         $url = parent::createUrl($params);
-        
+
         //Добавляем к URL префикс - буквенный идентификатор языка
-        if( $url == '/' ){
-            return '/'.$lang->url;
-        }else{
-            return '/'.$lang->url.$url;
+        if ($url == '/') {
+            return '/' . $lang->url;
+        } else {
+            return '/' . $lang->url . $url;
         }
     }
 }
